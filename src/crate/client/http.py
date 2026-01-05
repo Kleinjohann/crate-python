@@ -396,7 +396,7 @@ class Client:
     Crate connection client using CrateDB's HTTP API.
     """
 
-    SQL_PATH = "/_sql?types=true"
+    SQL_PATH = "/cratedb/_sql?types=true"
     """Crate URI path for issuing SQL statements."""
 
     retry_interval = 30
@@ -511,7 +511,7 @@ class Client:
         return content
 
     def server_infos(self, server):
-        response = self._request("GET", "/", server=server)
+        response = self._request("GET", "/cratedb/", server=server)
         _raise_for_status(response)
         content = _json_from_response(response)
         node_name = content.get("name")
